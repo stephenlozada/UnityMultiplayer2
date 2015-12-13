@@ -17,11 +17,11 @@ public class PlayerSpawn : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(playerInstance == null && isLocalPlayer)
+        if(playerInstance == null)
         {
             respawnTimer -= Time.deltaTime;
             //if(respawnTimer<=0 )
-            Spawn();
+           // Spawn();
         }
 	
 	}

@@ -25,6 +25,7 @@ public class EnemySpawner : NetworkBehaviour {
         number = Random.Range(1, 6);
         if (EnemyInstance == null)
 		{
+            
 			respawnTimer -= Time.deltaTime;
             if (respawnTimer <= 0)
             {
@@ -66,6 +67,7 @@ public class EnemySpawner : NetworkBehaviour {
 
     void Spawn()
     {
+        
         numLives--;
         //enemySpawnRate *= 0.9f;
         Vector3 offset = Random.onUnitSphere;

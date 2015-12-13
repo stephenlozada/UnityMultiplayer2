@@ -9,7 +9,7 @@ public class DamagedPlayer : NetworkBehaviour {
     [SyncVar]float  currentHealth = 0;
     float maxHealth = 100;
     public Text Statustext;
-    float calculatedHealth;
+   [SyncVar] float calculatedHealth;
     [SerializeField]public GameObject HealthBar;
     [SerializeField]public GameObject HealthPack;
     [SerializeField]public GameObject AmmoPack;
@@ -47,11 +47,8 @@ public class DamagedPlayer : NetworkBehaviour {
     }
     void Update()
     {
-        if (isLocalPlayer)
-        {
             if (currentHealth <= 0)
-                Die();
-        }
+                Die();   
     }
     public void AdjustHealth(Collider2D col)
     {
@@ -74,16 +71,19 @@ public class DamagedPlayer : NetworkBehaviour {
             {
                 Application.LoadLevel("Vr");
                 ScoreHandler.lives++;
+                GetComponent<PlayerSpawn>().Spawn();
             }
             if (number == 4 || number == 5 || number == 6)
             {
                 Application.LoadLevel("Vr2");
                 ScoreHandler.lives++;
+                GetComponent<PlayerSpawn>().Spawn();
             }
             if (number == 7 || number == 8 || number == 9)
             {
                 Application.LoadLevel("Vr3");
                 ScoreHandler.lives++;
+                GetComponent<PlayerSpawn>().Spawn();
             }
         }
         else if (col.gameObject.tag == "HealthPack")
@@ -107,7 +107,7 @@ public class DamagedPlayer : NetworkBehaviour {
     }  
     void Die()
     {
-        Destroy(gameObject);
+       Destroy(gameObject);
     }
 
     public void setHealthBar(float myHealth)
