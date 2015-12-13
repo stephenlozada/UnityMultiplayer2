@@ -64,6 +64,13 @@ public class DamagedPlayer : NetworkBehaviour {
             calculatedHealth = currentHealth / maxHealth;
             setHealthBar(calculatedHealth);
         }
+        else if (col.gameObject.tag == "Landmine")
+        {
+            currentHealth -= 100f;
+            calculatedHealth = currentHealth / maxHealth;
+            setHealthBar(calculatedHealth);
+            Destroy(GameObject.FindGameObjectWithTag("Landmine"));
+        }
         else if (col.gameObject.tag == "Teleporter")
         {
 
